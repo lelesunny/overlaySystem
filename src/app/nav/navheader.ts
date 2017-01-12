@@ -13,14 +13,14 @@ export class NavHeader implements OnInit {
   title = ' Example labs';
   User = "hahaha"
   private homePath: any = '/home';
-  private isAdmin:boolean;
+  private isAdmin: boolean;
   // private User : string;
   ngOnInit() {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser.role == "admin") {
-            this.homePath = '/admin/home';
-            this.isAdmin = true;
-    }else{
+      this.homePath = '/admin/home';
+      this.isAdmin = true;
+    } else {
       return false;
     }
     // reset login status
@@ -34,9 +34,9 @@ export class NavHeader implements OnInit {
 
   redo() {
     //this.router.navigate(['/ssologin']);
-    //window.location.reload();
 
-      this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
+    // window.location.reload();
 
     // console.log("se")
     // this.authenticationService.logoutServer().subscribe(result => {

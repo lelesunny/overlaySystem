@@ -3,9 +3,9 @@
     <div class="row mp">
       <div class="col-md-6">
         <div class="navbar-brand">
-          <a><img src="../assets/img/symc-log.png" class="logo"></a>
-          <!--<a><img src="../assets/img/portal.png" class="portal"></a>-->
-          <span>{{title}}</span>
+          <a><img src="../assets/img/symc-log.png" class="logo"></a>&nbsp;&nbsp;
+          <a><img src="../assets/img/portal.png" class="portal"></a>
+          <span>&nbsp;{{title}}</span>
         </div>
       </div>
       <!--		
@@ -24,7 +24,7 @@
           <a *ngIf="!isAdmin"><img src="../assets/img/portal.png" class="portalb"></a>
           <span *ngIf="!isAdmin" class="nav-link" routerLink="/help" routerLinkActive="active">Help</span>
           <a><img src="../assets/img/portal.png" class="portalb"></a>
-          <span class="logout" (click)="redo()">Logout</span>
+          <span class="logout" (click)="redo()" routerLink="/login">Logout</span>
           </span>
         </li>
       </ul>

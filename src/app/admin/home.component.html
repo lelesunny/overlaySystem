@@ -19,7 +19,7 @@
             <strong *ngIf="row.status === 'DELETED'" class="font15">{{row.name}}</strong>
           </template>
         </datatable-column>
-        <datatable-column name="User" [width]="50">
+        <datatable-column name="User" [width]="30">
           <template let-row="row" let-value="value">
             <div class="font15"> {{row.username}}</div>
           </template>
@@ -34,11 +34,11 @@
             {{row.starttime}}
           </template>
         </datatable-column>
-        <datatable-column name="Time Left" [width]="50">
+        <!--<datatable-column name="Time Left" [width]="50">
           <template let-row="row" let-value="value">
             {{row.nextstop}}
           </template>
-        </datatable-column>
+        </datatable-column>-->
         <datatable-column name="History" [width]="30">
           <template let-row="row" let-value="value">
             <button *ngIf="row.name" (click)="go(row.id);adminUserHistoryModal.show();gotoDetail(row)" class="btn btn-outline-warning btn-sm"><i class="fa fa-history" aria-hidden="true"></i>
