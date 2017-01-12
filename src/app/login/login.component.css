@@ -56,9 +56,9 @@ body{
     max-width: 100%;
     display: inline-block;
     vertical-align: middle;
-    background-color: #3c3f47;
+    background-color: #5d6373;
     color: white;
-    width: 398px;
+    width: 421px;
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 0px 3px 10px 2px #282329;
@@ -66,7 +66,7 @@ body{
 }
 .logintitle{
     color:#282329;
-    padding: 0px 245px 10px 2px;
+    padding: 34px 245px 10px 2px;
 }
 .form-control{
     background-color: #494b54 !important;
