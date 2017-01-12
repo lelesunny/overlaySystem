@@ -1,4 +1,17 @@
-# Bluecoat
+# The overlay project example
+1. npm install with node environment
+2. npm start
+
+# Project description
+
+this is a overlay system example using: Angular2,HTML,CSS,BOOTSTRAP,etc technologies. 
+
+# Sharing purpose
+2 role for this app: 
+admin account =>username: admin  password: admin
+general account => username: user password: user //developing 
+
+
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.17.
 
