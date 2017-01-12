@@ -17,7 +17,12 @@ export class HomeComponent implements OnInit {
     // private Load: boolean = true;
     private loading: boolean;
     private loadingextend: boolean;
-    private rows: any = [{"id":86,"name":"12/2 demo 2 template ","instructions":"demo 1 blueprint example instruction","blueprintid":76021913,"created":0,"tags":[]},{"id":93,"name":"New CN","instructions":"Test Instructions","blueprintid":76021913,"created":0,"tags":[]},{"id":83,"name":"Nebula Test Application","emailtemplateId":30,"instructions":"**Test Instructions for display 1**\n**Second Line**","blueprintid":76021913,"created":0,"tags":[]},{"id":89,"name":"Bluecoat Full Lab - Unconfigured - SG,CAS,MC,Rep","emailtemplateId":23,"instructions":"Test Instructions","blueprintid":76745498,"created":0,"tags":[]}];    
+    private rows: any = [
+        {"id":86,"name":"12/2 demo 2 template ","instructions":"demo 1 blueprint example instruction","blueprintid":76021913,"created":0,"tags":[],"status":"STARTED"},
+        {"id":93,"name":"New CN","instructions":"Test Instructions","blueprintid":76021913,"created":0,"tags":[],"status":"STOPPED"},
+        {"id":83,"name":"Nebula Test Application","emailtemplateId":30,"instructions":"**Test Instructions for display 1**\n**Second Line**","blueprintid":76021913,"created":0,"tags":[],"status":"STARTING"},
+        {"id":89,"name":"Bluecoat Full Lab - Unconfigured - SG,CAS,MC,Rep","emailtemplateId":23,"instructions":"Test Instructions","blueprintid":76745498,"created":0,"tags":[],"status":"DELETED"}
+        ];    
     private labUsers: any = [{"id":86,"name":"Example demo 2 template ","instructions":"demo 1 blueprint example instruction","blueprintid":76021913,"created":0,"tags":[]},{"id":93,"name":"New CN","instructions":"Test Instructions","blueprintid":76021913,"created":0,"tags":[]},{"id":83,"name":"Nebula Test Application","emailtemplateId":30,"instructions":"**Test Instructions for display 1**\n**Second Line**","blueprintid":76021913,"created":0,"tags":[]},{"id":89,"name":"Bluecoat Full Lab - Unconfigured - SG,CAS,MC,Rep","emailtemplateId":23,"instructions":"Test Instructions","blueprintid":76745498,"created":0,"tags":[]}];
     private rowTemp: any;
     private error: any;
