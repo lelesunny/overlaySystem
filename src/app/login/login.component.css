@@ -29,9 +29,9 @@
     padding: 0px;
 }
 .nebulaimg{
-    background-image: url("../assets/img/nebulaimgC.jpg");
-    background-position-y: 650px;
-    filter: brightness(115%);
+    background-image: url("../assets/img/A.jpg");
+    /*background-position-y: 599px;*/
+    filter: brightness(100%);
     box-shadow: 3px -1px 7px 3px #5d545f;
 }
 body{
