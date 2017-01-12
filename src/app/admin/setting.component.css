@@ -1,0 +1,58 @@
+.addbox {
+  margin: 5px 62px 8px;
+  width: 35%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  white-space: initial
+}
+
+.addbox::hover {
+  color: black;
+}
+
+.material {
+  clear: both;
+}
+
+.position {
+  margin: auto;
+  margin-top: -600px;
+  background-color: white;
+}
+
+.relative {
+  width: 1026px;
+}
+
+
+/*.datatable {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  height: 650px;
+}*/
+
+.datatable.vertical-scroll {
+  height: 170vh;
+}
+
+.stack0 {
+  margin: auto;
+  margin-top: 30px;
+}
+
+textarea {
+  z-index: 100000;
+  /*border:1px solid red;*/
+}
+
+.textover {
+  word-wrap: break-word;
+  -ms-word-wrap: break-word;
+}
+
+.datatable {
+  text-align: left;
+  margin-top: 66px;
+}

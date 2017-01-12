@@ -1,0 +1,65 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <dotted-border></dotted-border>
+    <!--<button class="btn btn-outline-warning btn-sm addbox" routerLink="/admin/bulkcreate"><i class="fa fa-users fa-lg" aria-hidden="true"></i>&nbsp;Add New Bulk Job</button>-->
+    <!--History admin-->
+    <div>
+      <datatable class='material' [rows]='settingData' [options]='options'>
+        <datatable-column name="Name">
+          <template let-row="row" let-value="value">
+            <strong class="textover font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Value" [width]="400">
+          <template let-row="row" let-value="value">
+            <div class="textover font15" title="Double click to edit" (dblclick)="editing[row.$$index] = true;gotoDetail($event,row)" *ngIf="!editing[row.$$index]">
+              {{value}}
+            </div>
+            <div *ngIf="editing[row.$$index]">
+              <textarea autofocus cols="60" rows="{{row.value.length/60  + 2}}" (blur)="updateValue($event, 'value', value, row)" type="text"
+                [value]="value"></textarea>
+            </div>
+          </template>
+        </datatable-column>
+
+        <datatable-column name="">
+          <template let-row="row" let-value="value">
+            <div class="textover" title="Double click to edit" (dblclick)="editing[row.$$index] = true" *ngIf="!editing[row.$$index]">
+              
+            </div>
+            <div *ngIf="editing[row.$$index]">
+
+              <button class="btn btn-outline-warning btn-sm addbox" (click)="onsubmit(row);">Submit</button>
+              <button class="btn btn-outline-danger btn-sm addbox" (click)="oncancel($event,row,value)">Cancel</button>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Detail" [width]="20">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.name" data-toggle="modal" href="#stack1" (click)="gotoDetail1(row)" class="btn btn-outline-warning btn-sm"><i class="fa fa-history" aria-hidden="true"></i>
+</button>
+          </template>
+        </datatable-column>
+      </datatable>
+    </div>
+    <div id="stack1" class="modal fade" tabindex="-1">
+      <div class="modal-content  stack0 modal-lg">
+        <div *ngIf="selected">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <h5 class="modal-title">Description: <i> {{selected.name}}</i></h5>
+          </div>
+          <div class="modal-body">
+            <div class="jumbotron">
+              <div class="container"> {{selected.description}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

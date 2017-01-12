@@ -1,0 +1,281 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <dotted-border></dotted-border>
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <!--running saved table-->
+    <div>
+      <h3 class="formG">Running and Saved</h3>
+      <datatable class='material padtop' [rows]='rows' [options]='options'>
+        <datatable-column name="Name" [width]="200">
+          <template let-row="row" let-value="value">
+            <strong *ngIf="row.status !== 'DELETED'" class="hyper font15" (click)="lgModal.show();gotoDetail(row); getUserLabInfo(row.id)">{{row.name}}</strong>
+            <strong *ngIf="row.status == 'DELETED'" class="font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Status" [width]="15">
+          <template let-row="row" let-value="value">
+            <span class="mytag" [ngClass]="{'danger':row.status == 'STOPPED','success':row.status == 'STARTED','warning':row.status == 'STARTING','primary':row.status == 'SCHEDULED','default':row.status == 'DELETED'}">{{row.status}}</span>
+          </template>
+        </datatable-column>
+        <datatable-column name="Pause" [width]="10">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name" (click)="pauseRunningLab(row)" class="btn btn-outline-warning btn-sm" [disabled]="row.status !== 'STARTED'"><i class="fa fa-pause" aria-hidden="true"></i>
+								</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="pauseLoading && row.status !=='STOPPED' && row.id == rowTemp " class="pauseLoading">
+                  <i class="fa fa-spinner fa-pulse fa-lg fa-fw pause"></i>
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <!--<datatable-column name="Stop+Delete" [width]="40">
+					<template let-row="row" let-value="value">
+						<button *ngIf="row.name" class="btn btn-outline-warning btn-sm">stop+delete</button>
+					</template>
+				</datatable-column>-->
+        <datatable-column name="Start" [width]="10">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name" class="btn btn-outline-warning btn-sm" [disabled]="(row.status !== 'STOPPED' || row.issaved == false)"
+                  (click)="startRunningLab(row)">
+							<i class="fa fa-play" aria-hidden="true"></i>
+						</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="startLoading && row.status =='STOPPED' && row.id == rowTemp " class="pauseLoading">
+                  <i class="fa fa-spinner fa-pulse fa-lg fa-fw pause"></i>
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Delete" [width]="10">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name" (click)="deleteRunningLab(row)" class="btn btn-outline-warning btn-sm">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</button>
+              </div>
+              <!--<div class="col-md-3">
+								<div *ngIf="deleteLoading && row.name && row.id == rowTemp " class="pauseLoading">
+									<i class="fa fa-spinner fa-pulse fa-lg fa-fw pause"></i>
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>-->
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Extend" [width]="10">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.name && row.nextstop" (click)="lgModalExtend.show();gotoDetail(row)" class="btn btn-outline-warning btn-sm">{{row.nextstop || 'extend' }}</button>
+          </template>
+        </datatable-column>
+        <datatable-column name="Save" [width]="10">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name && row.issaved" [disabled]="true" class="btn btn-outline-warning btn-sm">Saved</button>
+                <button *ngIf="row.name && !row.issaved" (click)="lgModalSave.show();gotoDetail(row);sv.default()" class="btn btn-outline-warning btn-sm">Save</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="saveLoading && row.name && row.id == rowTemp" class="saveLoading">
+                  <i class="fa fa-spinner fa-pulse fa-lg fa-fw pause"></i>
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+      </datatable>
+      <!--<div *ngIf="Load" class="positionUp">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+				<span class="sr-only">Loading...</span>
+			</div>-->
+    </div><br>
+    <dotted-border></dotted-border>
+    <!--search bar-->
+    <div class="row">
+      <input type='text' class="searchbox" placeholder='Search lab name' [ngModel]='val' (ngModelChange)='updateFilter($event)'
+      />
+    </div>
+    <!--Demos prebulid labs table-->
+    <div>
+      <h3 class="formG">Demos and Prebuilt Labs</h3>
+      <datatable class='material' [rows]='labUsers' [options]='options2'>
+        <datatable-column name="Name" [width]="100">
+          <template let-row="row" let-value="value">
+            <strong class="font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <!--<datatable-column name="Information" [width]="10">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.name" class="btn btn-outline-warning btn-sm" (click)="startSavedLab()">
+							<i class="fa fa-info" aria-hidden="true"></i>
+						</button>
+          </template>
+        </datatable-column>-->
+        <datatable-column name="Description">
+          <template let-row="row" let-value="value">
+            <div class="font15">{{row.instructions}}</div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Start" [width]="30">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name" (click)="labStart.show();gotoDetail(row)" class="btn btn-outline-warning btn-sm"><i class="fa fa-play" aria-hidden="true"></i>
+						</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="loading && (row.id === rowTemp)">
+                  <i class="col-md-4 fa fa-spinner fa-pulse fa-lg fa-fw snip"></i>
+                  <span class="sr-only">&nbsp;Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Schedule" [width]="30">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.name" (click)="scheduleModal.show();gotoDetail(row);sl.defaultSchedule()" class="btn btn-outline-warning btn-sm"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+						</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="scheduleLoading && (row.id === rowTemp)">
+                  <i class="col-md-4 fa fa-spinner fa-pulse fa-lg fa-fw snip"></i>
+                  <span class="sr-only">&nbsp;Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+          <!--<template let-row="row" let-value="value">
+            <button *ngIf="row.name" (click)="scheduleModal.show();gotoDetail(row);sl.defaultSchedule()" class="btn btn-outline-warning btn-sm"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+						</button>
+          </template>-->
+        </datatable-column>
+      </datatable>
+      <!--<div *ngIf="Loading" class="position">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+				<span class="sr-only">Loading...</span>
+			</div>-->
+    </div>
+    <!--modal window-->
+    <div>
+      <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">Application documentation:
+                <i class="selectedUser" *ngIf="selectedUser">{{selectedUser.name}}</i>
+              </h5>
+            </div>
+            <div *ngIf="labInfoLoad">
+              <i class="fa fa-spinner fa-pulse fa-2x fa-fw labInfoLoad"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div *ngIf="userLabInfo && !labInfoLoad" class="modal-body">
+              <div class="wba">
+                <i class="wb" [innerHtml]="userLabInfo"></i>
+              </div>
+            </div>
+            <div *ngIf="!userLabInfo && !labInfoLoad" class="modal-body">
+              <i>No data to display</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--schedule window-->
+    <div>
+      <div bsModal #scheduleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="scheduleModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">Schedule start:
+                <i class="selectedUser" *ngIf="selectedUser">{{selectedUser.name}}</i>
+              </h5>
+            </div>
+            <div class="modal-body">
+              <schedulelab (onSchedule)="onSchedule($event);scheduleModal.hide()" [regions]="regions" [timezones]="timezones" [scheduleLoading]="scheduleLoading"
+                #sl> </schedulelab>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div bsModal #lgModalExtend="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="lgModalExtend.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">Schedule Stop</h5>
+            </div>
+            <div class="modal-body">
+              <lab-extend (onSubmit)="onExtend($event)" (onClose)="lgModalExtend.hide()" [selectedUser]="selectedUser" [extendOptions]="extendOptions"
+                [loadingextend]="loadingextend"></lab-extend>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TODO: apply lazyloading sipper-->
+    <div>
+      <div bsModal #lgModalSave="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="lgModalSave.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">Save Lab</h5>
+            </div>
+            <div class="modal-body">
+              <lab-save (onSubmit)="onSave($event);lgModalSave.hide()" [selectedUser]="selectedUser" #sv></lab-save>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div bsModal #labStart="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="labStart.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h4 class="modal-title">Start Lab</h4>
+            </div>
+            <div class="modal-body">
+              <option-open (onSubmit)="onStart($event);labStart.hide()" [optimizeOptions]="optimizeOptions" [dropdownData]="regions" [title]="'Optimize Options'"
+                [dropdownTitle]="'Location'"> </option-open>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

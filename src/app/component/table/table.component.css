@@ -1,0 +1,24 @@
+.datatable {
+	text-align: left;
+	width:100%;
+	margin:0 auto;
+	height: 623px;
+}
+.datatable.vertical-scroll {
+  height:170vh;
+}
+.btn-outline-warning {
+    margin-top: -10px !important;
+}
+.overflow{
+	overflow-y: auto;
+	overflow-x: auto;
+	height: 480px;
+}
+.stack3{
+    margin: auto;
+    margin-top: 50px;
+}
+.bc-btn {
+    background-color:  #ffca05;
+}

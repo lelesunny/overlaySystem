@@ -1,0 +1,99 @@
+.padtop{
+    margin-left: 50px;
+    width: 500px;
+    margin-top: 20px;
+}
+.usertab{
+    color:white;
+    text-decoration: none;
+    float: right;
+    margin-top: 15px;
+    padding-right: 20px;
+}
+
+.title {
+    color: #ffca05;
+}
+.logo{
+    width: 24%;
+    vertical-align: middle;
+    margin-bottom: 6px;
+    margin-right: -13px;
+    /*display: inline;*/
+    
+}
+.portal{
+    margin-bottom: 10px;
+}
+.navbar-brand{
+    padding: 0px;
+}
+.nebulaimg{
+    background-image: url("../assets/img/nebulaimgC.jpg");
+    background-position-y: 650px;
+    filter: brightness(115%);
+    box-shadow: 3px -1px 7px 3px #5d545f;
+}
+body{
+    background-color: red !important;
+}
+.vertical-center {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    /*vertical-align: middle;*/
+    background-color:#efefef;
+}
+
+.vertical-center:before {    /* create a full-height inline block pseudo=element */
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;    /* vertical alignment of the inline element */
+  height: 100%;
+}
+
+.vertical-center > .container {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #3c3f47;
+    color: white;
+    width: 398px;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px 2px #282329;
+    margin-left: 15px;
+}
+.logintitle{
+    color:#282329;
+    padding: 0px 245px 10px 2px;
+}
+.form-control{
+    background-color: #494b54 !important;
+    color:lightgray !important;
+}
+input:focus {
+    border:.5px solid #ffca05;
+    box-shadow: 0 0 6px #fff06d;
+}
+.auto{
+    margin-top: -17px;
+    padding: 42px 50px 388px 0px;
+}
+.help-block {
+    /*border:1px solid #a94442;*/
+    font-size: 12px;
+    color:#f0ad4e;
+    margin-left: -244px;
+    padding: 0px;
+}
+@media (max-width: 768px) {
+  .vertical-center:before {
+    height: auto;
+    /* Or */
+    display: none;
+  }
+}
+.fa-r{
+    margin-right: -26px;
+}

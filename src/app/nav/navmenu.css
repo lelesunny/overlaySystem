@@ -1,0 +1,74 @@
+.active {
+  background-color: #ccc !important;
+  /*height: 35px;*/
+  border-radius: 45px;
+  color: black !important;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+li {
+  margin-left: 9px;
+  margin-right: -16px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 2px 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  /* width: 67px; */
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  margin-bottom: -4px;
+  /*background-color: black;*/
+  background: rgb(35, 35, 34);
+  background: rgba(35, 35, 34, 0.75);
+}
+
+
+/* Change the link color on hover */
+
+li a:hover {
+  /*background-color: #ccc !important;*/
+  /*color: #000 !important;*/
+  color: white;
+  border-radius: 4px;
+  /* width: 67px; */
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+}
+
+.logout {
+  color: #ffca05;
+  text-decoration: none;
+  float: right;
+  margin-top: 15px;
+  padding-right: 20px;
+}
+
+.logout:hover {
+  color: #fff06d;
+}
+
+.title {
+  color: #ffca05;
+}
+
+.navbar {
+  padding: 0 10px 0px 5px !important;
+}
+
+.navbar-nav .nav-item {
+  /*float: left;*/
+  width: 116px;
+  text-align: center;
+}
+
+.fa-2x {
+  font-size: 18px;
+}

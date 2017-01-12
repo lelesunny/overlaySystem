@@ -1,0 +1,13 @@
+<div class="jumbotron">
+
+    <div *ngIf="selectedUser && isEdit" class="container">
+        <div [innerHtml]="selectedUser.instructions"></div>
+    </div>
+    <div *ngIf="!isEdit && selectedUser">
+        <textarea type="text" class="form-control textbox" rows="5"  name="inst" [(ngModel)]="inst"></textarea>
+    </div>
+    <button [disabled]='selectedUser.instructions == inst' *ngIf="!isEdit && selectedUser" class="btn btn-outline-warning btn-md" (click)="onSubmit()">Submit</button>
+
+    <button type="button" class="btn btn-outline-danger btn-md" (click)="isEdit = !isEdit;onEdit()">{{buttonData}}</button>
+
+</div>

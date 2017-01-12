@@ -1,0 +1,105 @@
+.usertab {
+  color: white;
+  text-decoration: none;
+  float: right;
+  margin-top: 15px;
+  padding-right: 20px;
+}
+
+.logout {
+  color: #ffca05 !important;
+  /*text-decoration: none;*/
+  /*float: right;*/
+  /*margin-top: 15px;*/
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: #fff06d !important;
+}
+
+.title {
+  color: #ffca05;
+}
+
+.logo {
+  width: 24%;
+  vertical-align: middle;
+  margin-bottom: 6px;
+  margin-right: -13px;
+  /*display: inline;*/
+}
+
+.portal {
+  margin-bottom: 10px;
+}
+
+.portalb {
+  margin-bottom: 12px;
+  height: 45px;
+  padding: 7px;
+  margin-top: 5px;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+
+.bg-inverse {
+  padding: 0px !important;
+}
+
+.mp {
+  margin-bottom: -20px;
+}
+
+.nebulaimg {
+  background-image: url("../assets/img/nebulaimgC.jpg");
+  background-position-y: 650px;
+  filter: brightness(120%);
+  /*filter: grayscale(50%); */
+  box-shadow: 3px -1px 10px 6px gray
+}
+
+
+/*.nebulaimg{
+    background-image: url(../assets/img/A.jpg);
+    background-position-y: 677px;
+    filter: brightness(100%);
+    box-shadow: 3px -1px 10px 6px grey;
+    background-position-x: -92px;
+}*/
+
+.site-login {
+  margin: 0;
+  padding: 0;
+  float: right;
+  text-align: right;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 15px;
+  list-style: none;
+}
+
+.search-box {
+  display: none;
+}
+
+.sign-in-email {
+  padding: 0px 24px;
+  font-size: 13px;
+  border: none;
+  float: right;
+}
+
+.active {
+  color:snow !important;
+}
+li span{
+  color: #73736e;
+}
+li span:hover {
+  color: #989898;
+}

@@ -1,0 +1,41 @@
+.bc-btn {
+    background-color:  #ffca05;
+}
+label{
+    margin-bottom: 16px;
+    font-size: large;
+    font-weight: 700;
+}
+.checkboxcontext{
+    font-size: 14px;
+    padding: 4px;
+    margin-top: -6px;
+    margin-bottom: 6px;
+}
+.my-drop-zone {
+    border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+/* Default class applied to drop zones on over */
+
+.another-file-over-class {
+    border: dotted 3px green;
+}
+
+html,
+body {
+    height: 100%;
+}
+.container{
+    padding: 14px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    margin-bottom: 12px;
+    border-radius: 3px;
+}
+.textbox{
+    padding: 14px;
+    margin-bottom: 12px;
+}

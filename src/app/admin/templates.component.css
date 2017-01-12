@@ -1,0 +1,82 @@
+.searchbox {
+  padding: 8px;
+  margin: 9px 15px -10px;
+  width: 35%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  margin-bottom: -20px;
+}
+
+.addbutton:hover {
+  background-color: #ffca05 !important;
+  border-color: #ffca05 !important;
+  border-radius: 40px !important;
+  color: black;
+}
+
+.addbutton {
+  color: #f0ad4e;
+  background-image: none;
+  background-color: transparent;
+  border-color: #f0ad4e;
+  border-radius: 40px !important;
+}
+
+pre {
+  word-wrap: break-word;
+  white-space: inherit;
+  font-size: 11px;
+}
+
+.addbox {
+  padding: 8px;
+  margin: 25px 0px 6px 3px;
+  width: 15%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  white-space: initial
+}
+
+.datatable {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  height: 623px;
+}
+
+.datatable.vertical-scroll {
+  height: 170vh;
+}
+
+.position {
+  margin: auto;
+  margin-top: -570px;
+  background-color: white;
+}
+
+.relative {
+  width: 1026px;
+}
+
+.selectedUser {
+  font-size: 0.9em;
+}
+
+.flow {
+  text-overflow: ellipsis;
+  width: 185px;
+  overflow-x: hidden;
+  word-break: break-all;
+  word-spacing: initial;
+}
+
+.or {
+  font-weight: 600;
+  padding: 5px;
+  font-size: 15px;
+}
+.btton{
+  margin: 12px 0px 4px 0px;
+}

@@ -1,0 +1,64 @@
+<!--<div *ngIf="saveError" class="alert alert-danger">{{saveError}}</div>-->
+<div class="jumbotron">
+    <form name="form" (ngSubmit)="onsubmit()" #f="ngForm" novalidate>
+
+        <!--Optimize option-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="firstName">{{title}}</label>
+                    <div *ngFor="let opt of optimizeOptions">
+                        <div class="checkboxcontext">
+                            <input type="radio" name="optimize" [(ngModel)]="model.optimizationlevel" [value]="opt.value">                            {{opt.display}}
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="row pad">
+            <div *ngIf="model.optimizationlevel =='P' || model.optimizationlevel =='Optional'">
+                <div class="optP">
+                    <div class="opto">{{dropdownTitle}}</div>
+                    <div class="opts">
+                        <ng-select [allowClear]="true" [items]="dropdownData" (data)="regionValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                            (typed)="typed($event)" [active]="emailOriginal">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="emailtemplate" *ngIf="emailTemplateText">
+                    <i [innerHtml]="emailTemplateText"></i>
+                </div>
+                <div class="emailtemplate" *ngIf="emailOriginal && !emailTemplateText ">
+                    <div *ngIf="emailOriginal">
+                        <div *ngFor="let e of emailOriginal"><i>{{e.id}}</i></div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="model.optimizationlevel =='C'">
+                <div class="optC">
+                    <div class="optl">Cloud</div>
+                    <div class="optb">Best Fit</div>
+                </div>
+                <div class="optC">
+                    <div class="optl">Region</div>
+                    <div class="optb">Best Fit</div>
+                </div>
+            </div>
+            <div *ngIf="model.optimizationlevel =='Custom'">
+                <div class="optP">
+                    Title: <input type="text" name="custom" class="form-control" [(ngModel)]="model.customEmailTitle" placeholder="Set up custom email template name">                   
+                    Message: <textarea class="form-control" name="custom" [(ngModel)]="model.customEmailData" rows="3"></textarea>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row form-group button-position">
+            <button [disabled]="loading || (model.optimizationlevel == 'P' && !model.region) || (model.optimizationlevel == 'Custom' && (!model.customEmailTitle || !model.customEmailData))" class="btn btn-outline-warning btn-md">Submit</button>
+            <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+            <!--<a routerLink="/templates" routerLinkActive="active" class="btn btn-outline-secondary btn-md">Cancel</a>-->
+        </div>
+    </form>
+</div>

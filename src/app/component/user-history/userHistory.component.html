@@ -1,0 +1,11 @@
+<datatable class='material' [rows]='userHistory' [options]='historyOptions'>
+    <datatable-column name="History">
+        <template let-row="row" let-value="value">
+            <div [innerHtml]="row.history"></div>
+        </template>
+    </datatable-column>
+</datatable>
+<div *ngIf="historyLoading" class="position">
+    <i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+    <span class="sr-only">Loading...</span>
+</div>

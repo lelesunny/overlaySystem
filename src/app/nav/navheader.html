@@ -1,0 +1,36 @@
+<a class="portal" routerLink="{{this.homePath}}" routerLinkActive="active">
+  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse nebulaimg">
+    <div class="row mp">
+      <div class="col-md-6">
+        <div class="navbar-brand">
+          <a><img src="../assets/img/symc-log.png" class="logo"></a>
+          <!--<a><img src="../assets/img/portal.png" class="portal"></a>-->
+          <span>{{title}}</span>
+        </div>
+      </div>
+      <!--		
+		<div class="offset-md-3 col-md-2">
+			<i class="usertab"><user-tab></user-tab></i>
+		</div>
+		<div class="col-md-1"><a class="navbar-link logout" (click)="redo()">
+		Logout
+	</a></div>-->
+      <ul class="site-login col-md-6">
+        <li class="sign-in">
+          <span class="sign-in-email">
+            <span *ngIf="!isAdmin" class="nav-link" routerLink="/home" routerLinkActive="active">Home</span>
+          <a *ngIf="!isAdmin"><img src="../assets/img/portal.png" class="portalb"></a>
+          <span><user-tab></user-tab></span>
+          <a *ngIf="!isAdmin"><img src="../assets/img/portal.png" class="portalb"></a>
+          <span *ngIf="!isAdmin" class="nav-link" routerLink="/help" routerLinkActive="active">Help</span>
+          <a><img src="../assets/img/portal.png" class="portalb"></a>
+          <span class="logout" (click)="redo()">Logout</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <bc-nav-menu></bc-nav-menu>
+    </div>
+  </nav>
+</a>

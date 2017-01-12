@@ -1,0 +1,217 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <h3 class="padbottom"><strong>{{title}}</strong></h3>
+    <dotted-border></dotted-border>
+    <div class="col-md-11 jumbotron">
+      <form name="form" (ngSubmit)="f.form.valid && go()" #f="ngForm" novalidate>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="username">Bulk Job Name</label>
+              <input type="text" class="form-control" name="username" [(ngModel)]="model.bulkjobname" #username="ngModel" required>
+              <div *ngIf="f.submitted && !username.valid" class="help-block">Bulk Name is required</div>
+            </div>
+          </div>
+        </div>
+        <!--email input-->
+        <div class="row">
+          <div class="col-md-9 col-sm-12">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="email">Email</label>
+              <div class="row">
+                <div class="col-lg-8 col-md-4">
+                  <div *ngIf="unvalid" class="alert alert-danger alert-size"> unvalid email</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-8 col-md-8">
+                  <input type="text" class="form-control" name="email" [(ngModel)]="email" (keyup.enter)="addEmail(email);">
+                </div>
+                <div class="col-lg-1 col-md-1">
+                  <div class="addbutton" (click)="addEmail(email)">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                  <a *ngIf="email && !model.email" class=" count-o emailtooltip">
+                    <i></i>
+                    <u></u>
+                    Please Add it
+                  </a>
+                </div>
+              </div>
+              <div *ngFor="let email of model.email">
+                <div class="row">
+                  <div class="col-md-7 email"><span>{{email}}</span></div>
+                  <div class="col-md-1">
+                    <span (click)="deleteEmail(email)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Template dropdown-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="firstName">Template</label>
+              <ng-select [allowClear]="true" [items]="templates" (data)="templateValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                (typed)="typed($event)" placeholder="Select or search template">
+              </ng-select>
+              <!--<div *ngIf="f.submitted && !firstName.valid" class="help-block">Select your timezone</div>-->
+            </div>
+          </div>
+        </div>
+        <!--Optimize option-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="firstName">Optimize Options</label>
+              <div *ngFor="let opt of optimizeOptions">
+                <div class="checkboxcontext">
+                  <input type="radio" name="optimize" [(ngModel)]="model.optimizationlevel" [value]="opt.value"> {{opt.display}}
+                </div>
+              </div>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="model.optimizationlevel =='P'">
+          <div class="optP">
+            <div class="opto">Location</div>
+            <div class="opts">
+              <ng-select [allowClear]="true" [items]="regions" (data)="regionValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                (typed)="typed($event)" placeholder="Select The Location">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="model.optimizationlevel =='C'">
+          <div class="optC">
+            <div class="optl">Cloud</div>
+            <div class="optb">Best Fit</div>
+          </div>
+          <div class="optC">
+            <div class="optl">Region</div>
+            <div class="optb">Best Fit</div>
+          </div>
+        </div>
+        <!--timezone template-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="firstName">Select your TimeZone</label>
+              <ng-select [allowClear]="true" [items]="timezones" (data)="timezoneValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                (typed)="typed($event)" placeholder="Select Time Zone">
+              </ng-select>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <!--select option -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="firstName">Select An Option</label>
+              <div *ngFor="let soption of schedulingOptions">
+                <div class="checkboxcontext">
+                  <input type="radio" name="schoption" [(ngModel)]="model.schoption" (click)="refreshData($event)" [value]="soption.value">                  {{soption.display}}
+                </div>
+              </div>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <!--schedule date time-->
+        <div *ngIf="model.schoption=='M'">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th class="dateb">Date</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <td>
+                  <input type="date" class="form-control input-group" name="startdate" [(ngModel)]="model.startdate" required>
+                </td>
+                <td>
+                  <ng-select [allowClear]="true" [items]="days" (selected)="model.noofdays=$event.text" placeholder="Days ">
+                  </ng-select>
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div *ngIf="model.schoption=='A'">
+          <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Schedule date and time</label>
+            <!--<span class="checkbox">
+						<input type="checkbox" (click)="model.isautomaticstart = !model.isautomaticstart; $event.stopPropagation()"
+						/><a class="checkboxcontext">&nbsp;Automatic Start</a>
+					</span>-->
+            <a *ngIf="date && time && hour && !model.schedule" class="count-oi stooltip">
+              <i></i>
+              <u></u>
+              Please Add it
+            </a>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th class="date">Date</th>
+                  <th class="date">Start time</th>
+                  <th>Duration</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <td>
+                    <input type="date" class="form-control input-group date" name="startdate" [(ngModel)]="date" #username="ngModel">
+                  </td>
+                  <td>
+                    <input type="time" class="form-control" name="starttime date" [(ngModel)]="time" #username="ngModel">
+                  </td>
+                  <td>
+                    <ng-select [allowClear]="true" [items]="hours" (data)="refreshValue($event)" (selected)="selectedHour($event)" (removed)="removed($event)"
+                      (typed)="typed($event)" placeholder="hourly ">
+                    </ng-select>
+                  </td>
+                  <td>
+                    <div class="addbutton" (click)="addDate(date,time)">
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let date of model.schedule">
+                  <td>{{date.startdate}}</td>
+                  <td>{{date.starttime}}</td>
+                  <td>{{date.duration}} H</td>
+                  <td> <span (click)="deleteSchedule(date)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading || !model.bulkjobname || !model.email || (!model.schedule &&  (!model.startdate || !model.noofdays) ) || !value || !model.timezone || !model.labid || (model.optimizationlevel == 'P' && !model.region)"
+            class="btn btn-outline-warning btn-md">Go</button>
+          <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+          <a routerLink="/admin/home" routerLinkActive="active" class="bc-btn">&nbsp;&nbsp;&nbsp;Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <dotted-border></dotted-border>
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <div class="row formback">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-md-2 col-sm-3 formG"> <label><h5>Current User:</h5></label></div>
+          <div class="col-md-6 formG">
+           <h6 class="tab">{{user}}</h6>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2 col-sm-3 formG"> <label><h5>Current Tags:</h5></label></div>
+          <div class="col-md-8">
+            <div> <span class="tag tag-warning" *ngFor="let tags of userTags">{{tags.name}}</span></div>
+          </div>
+        </div><br>
+        <user-history style="height: 500px" [userHistory]="userHistory"></user-history>
+      </div>
+    </div>
+    <!--<div class="form-group row">
+      <div class="col-md-6">
+      </div>
+    </div>-->
+    <!--<datatable class='material' [rows]='userHistory' [options]='options'>
+				<datatable-column name="History">
+					<template let-row="row" let-value="value">
+						<div [innerHtml]="row.history"></div>
+					</template>
+				</datatable-column>
+			</datatable>-->
+    <!--<user-history [userHistory]="userHistory"></user-history>-->
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<bc-nav-header></bc-nav-header>
+<!--<bc-nav-menu></bc-nav-menu>-->
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <!--<h3 class="padbottom"><strong>{{title}}</strong></h3>-->
+    <dotted-border></dotted-border>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    <button class="btn btn-outline-warning btn-sm addbox" (click)="lgModal.show();ct.defaultCustomTag();">
+			<i class="fa fa-tags fa-lg" aria-hidden="true"></i>&nbsp;Custom Tags
+			</button>
+    <!--History admin-->
+    <div>
+      <datatable class='material' [rows]='tags' [options]='options'>
+        <datatable-column name="Name">
+          <template let-row="row" let-value="value">
+            <strong class="font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Description" [width]="430">
+          <template let-row="row" let-value="value">
+            <div class="font15">{{row.description}}</div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Delete" [width]="30">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.name" [hidden]="row.isprebuilt" class="btn btn-outline-warning btn-sm" (click)="onDelete(row)">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+						</button>
+          </template>
+        </datatable-column>
+      </datatable>
+      <!--<div *ngIf="Loading" class="position">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+				<span class="sr-only">Loading...</span>
+			</div>-->
+    </div>
+  </div>
+</div>
+<!--custom tag window-->
+<div>
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+          <h5 class="modal-title">Custom Tag</h5>
+        </div>
+        <div class="modal-body">
+          <form-tag (onSubmit)="onSubmit($event);lgModal.hide()" [loading]="loading" [error]="error" #ct></form-tag>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

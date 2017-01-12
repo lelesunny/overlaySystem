@@ -1,0 +1,2 @@
+<div *ngIf="!isAdmin" class="nav-link" routerLink="/account" routerLinkActive="active">{{User}}</div>
+<div *ngIf="isAdmin" class="nav-link adminUser">{{User}}</div>

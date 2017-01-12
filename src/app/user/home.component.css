@@ -1,0 +1,119 @@
+.searchbox {
+  padding: 8px;
+  margin: 15px;
+  width: 35%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  margin-bottom: -30px;
+  margin-top: 10px;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffca05 !important;
+  border-color: #ffca05 !important;
+  color: black;
+}
+
+.position {
+  margin: auto;
+  margin-top: -240px;
+  background-color: white;
+}
+
+.relative {
+  width: 1026px;
+}
+
+.datatable {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  height: 300px;
+}
+
+.snip {
+  padding: 0px;
+  margin-left: 22px;
+  margin-top: 5px;
+}
+
+.positionUp {
+  margin-left: 494px;
+  margin-top: -253px;
+  margin-bottom: 217px;
+}
+
+.failed {
+  color: red !important;
+  font-size: 12px;
+}
+
+.dialog-body {
+  margin: 0;
+  padding: 0 23px 23px;
+}
+
+.set-stop-timer-option {
+  cursor: pointer;
+  background-color: #F2F2F2
+}
+
+.dialog-body label {
+  font-weight: 400;
+  font-family: "Helvetica W02 Bd Cn", Helvetica, sans-serif;
+}
+
+.set-stop-timer .set-stop-timer-option {
+  padding: 0 10px;
+  height: 46px;
+  line-height: 46px;
+}
+
+.or {
+  margin: 0 1em;
+  line-height: 48px;
+  font-family: "Helvetica W02 Cn", Helvetica, sans-serif;
+}
+
+.saveLoading {
+  margin-left: 21px;
+}
+
+[disabled] {
+  color: #9E9E9E !important;
+  opacity: .5 !important;
+  border-color: #9E9E9E !important;
+}
+
+[disabled]:hover {
+  background-color: #efefef !important;
+  border-color: #9E9E9E !important;
+}
+
+.wb {
+  word-wrap: break-word !important;
+}
+
+.wba {
+  box-shadow: 1px 1px 4px darkgrey;
+  padding: 16px;
+  margin: 3px -9px 3px -9px;
+  padding-top: 28px;
+}
+
+.labInfoLoad {
+  margin: auto;
+  width: 875px;
+}
+
+.formG {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #6a747d;
+  font-size: 23px;
+  line-height: 22px;
+  padding: 12px 15px 30px 0px;
+  margin-bottom: -10px;
+  margin-top: 4px;
+}

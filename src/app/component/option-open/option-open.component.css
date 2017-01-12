@@ -1,0 +1,84 @@
+.bc-btn {
+  background-color: #ffca05;
+}
+
+.btn-cancel {
+  color: #ffca05;
+}
+
+label {
+  margin-bottom: 16px;
+  font-size: large;
+  font-weight: 700;
+}
+
+.checkboxcontext {
+  font-size: 14px;
+  padding: 4px;
+  margin-top: -3px;
+  margin-bottom: 5px;
+}
+
+.optC {
+  margin: 1px 3px 28px;
+  padding: 5px;
+  float: left;
+  width: calc((100% - 3px)/ 3);
+  display: flex;
+  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  background-color: #f3f1f1;
+  border-radius: 6px;
+}
+
+.optl {
+  display: inline-block;
+  margin-top: 5px;
+  font-family: "Helvetica W02 Bd Cn", Helvetica, sans-serif;
+}
+
+.optb {
+  color: #999;
+  font-size: 14px;
+  line-height: 34px;
+  margin-left: 14px;
+}
+
+.optP {
+  margin: 1px 0px 35px;
+  width: 100%;
+  float: left;
+  background-color: #f3f1f1;
+  border-radius: 6px;
+  box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+}
+
+.opto {
+  margin-right: 2px;
+  display: inline-block;
+  margin-top: 7px;
+  font-family: "Helvetica W02 Bd Cn", Helvetica, sans-serif;
+}
+
+.opts {
+  display: inline-block;
+  width: calc(90% - 31px);
+}
+
+.emailtemplate {
+  padding: 20px;
+  background-color: floralwhite;
+  border-radius: 6px;
+  box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 18px;
+}
+
+.button-position {
+  margin-left: 2px;
+}
+
+.pad {
+  padding: 0px 13px 0px 7px;
+}

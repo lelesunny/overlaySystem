@@ -1,0 +1,58 @@
+<div class="overflow">
+  <datatable style="height:auto" class='material' [rows]='userLabs' [options]='options'>
+    <datatable-column name="save">
+      <template let-row="row" let-value="value">
+        <button class="btn btn-outline-warning btn-sm" data-toggle="modal" href="#stack2" (click)="onSave(row)"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+</button>
+      </template>
+    </datatable-column>
+  </datatable>
+</div>
+<!--<div *ngIf="historyLoading" class="position">
+    <i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+    <span class="sr-only">Loading...</span>
+</div>-->
+<div id="stack2" class="modal fade" tabindex="-2">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content stack3">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Schedule Lab Save Deadline </h4>
+      </div>
+      <div class="modal-body stack1">
+        <!--<div *ngIf="stopData.username"> User: {{stopData.username}}-->
+        <div>  
+          <!--User: {{stopData.username}}-->
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th class="date">Stop Date</th>
+                <th class="date">Stop time</th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <td>
+                  <input type="date" class="form-control input-group date" name="date" [(ngModel)]="stopData.date">
+                </td>
+                <td>
+                  <input type="time" class="form-control" name="time" [(ngModel)]="stopData.time">
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{stopData.date}}</td>
+                <td>{{stopData.time}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="close()" class="btn btn-default">Close</button>
+          <button type="button" class="btn btn-warning bc-btn" [disabled]="!stopData.date || !stopData.time" (click)="submit()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

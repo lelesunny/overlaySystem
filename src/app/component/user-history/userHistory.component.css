@@ -1,0 +1,28 @@
+.bc-btn {
+    background-color:  #ffca05;
+}
+label{
+    margin-bottom: 16px;
+    font-size: large;
+    font-weight: 700;
+}
+.checkboxcontext{
+    font-size: 14px;
+    padding: 4px;
+    margin-top: -6px;
+    margin-bottom: 6px;
+}
+.datatable {
+	text-align: left;
+	width:100%;
+	margin:0 auto;
+    height: 365px;
+}
+.position{
+    margin: auto;
+    margin-top: -273px;
+    background-color: white;
+}
+.relative{
+    width: 850px;
+}

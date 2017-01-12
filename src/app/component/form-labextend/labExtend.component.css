@@ -1,0 +1,17 @@
+.bc-btn {
+    background-color:  #ffca05;
+}
+label{
+    margin-bottom: 16px;
+    font-size: large;
+    font-weight: 700;
+}
+.checkboxcontext{
+    font-size: 14px;
+    padding: 4px;
+    margin-top: -6px;
+    margin-bottom: 6px;
+}
+li{
+    text-decoration: none;
+}

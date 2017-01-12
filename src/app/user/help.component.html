@@ -1,0 +1,62 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <dotted-border></dotted-border>
+  <div class="container">
+    <div class="col-md-3 col-lg-3">
+      <!--<div class="row">-->
+      <div class="row fd">
+        <div class="form-group row">
+          <label class="formG"><h5>User:</h5>
+	  <div>
+		<p><user-tab></user-tab></p>
+	  </div>
+	  </label>
+        </div>
+        <div class="form-group row">
+          <label class="formG"><h5>Current Tags:</h5></label>
+          <div>
+            <h5> <span class="tag tag-warning" *ngFor="let tags of userTags">{{tags.name}}</span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="messageSent" class="col-md-8 col-lg-8  emailTo">
+      <div class="input-group">
+        <a target="_blank" href="{{linkSupport}}">Instructions and FAQ</a><br>
+      </div>
+      <h1>Contact</h1><br>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">To</span>
+        <input type="text" class="form-control" [(ngModel)]="emailTo" aria-describedby="basic-addon1" disabled>
+      </div><br>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Subject</span>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [(ngModel)]="model.subject" required>
+      </div><br>
+      <div class="input-group">
+        <span>Description</span>
+        <textarea aria-describedby="basic-addon2" class="form-control" [(ngModel)]="model.msg" cols="30" rows="10" required></textarea>
+      </div><br>
+      <!--<div class="input-group">
+        <button class="btn btn-outline-warning btn-md" (click)="onsubmit()" [disabled]="!model.msg || !model.subject">Submit</button>
+      </div>-->
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-outline-warning btn-md" (click)="onsubmit()" [disabled]="!model.msg || !model.subject">Submit</button>
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="Loading">
+            <i class="col-md-4 fa fa-spinner fa-pulse fa-lg fa-fw snip"></i>
+            <span class="sr-only">&nbsp;Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!messageSent" class="col-md-6 col-lg-6  emailTo">
+      <h1>Thanks for sending us your message. </h1>
+      <h5> We will now process your request and will respond to you as soon as possible.
+      </h5><br>
+      <label><a routerLink="/home" routerLinkActive="active" class="bc-btn fontc"> << back to home</a></label>
+    </div>
+  </div>
+</div>

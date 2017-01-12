@@ -1,0 +1,85 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <dotted-border></dotted-border>
+    <button class="btn btn-outline-warning btn-sm addbox" routerLink="/admin/bulkcreate"><i class="fa fa-users fa-lg" aria-hidden="true"></i>&nbsp;Add Bulk Job</button>
+    <!--History admin-->
+    <div>
+      <datatable class='material' [rows]='adminBulkHistroy' [options]='options'>
+        <datatable-column name="Bulk Name" [width]="180">
+          <template let-row="row" let-value="value">
+            <strong class="font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Date">
+          <template let-row="row" let-value="value">
+            <div class="font15">{{row.created|date: 'medium'}}</div>
+          </template>
+        </datatable-column>
+        <datatable-column name="# of instances" [width]="40">
+          <template let-row="row" let-value="value">
+            {{row.noofinstances}}
+          </template>
+        </datatable-column>
+        <datatable-column name="Detail" [width]="30">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.name" data-toggle="modal" href="#stack1" (click)="gotoDetail(row);getBulkUserLabs()" class="btn btn-outline-warning btn-sm"><i class="fa fa-history" aria-hidden="true"></i>
+</button>
+          </template>
+        </datatable-column>
+        <!--<datatable-column name="Pause All" [width]="30">
+					<template let-row="row" let-value="value">
+						<button *ngIf="row.name" class="btn btn-outline-warning btn-sm"><i class="fa fa-pause" aria-hidden="true"></i></button>
+					</template>
+				</datatable-column>
+				<datatable-column name="Delete" [width]="30">
+					<template let-row="row" let-value="value">
+						<button *ngIf="row.name" class="btn btn-outline-warning btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i>
+</button>
+					</template>
+				</datatable-column>-->
+      </datatable>
+      <!--<div *ngIf="Loading" class="position">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+				<span class="sr-only">Loading...</span>
+			</div>-->
+    </div>
+    <!--<div>
+			<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div *ngIf="selectedUser">
+
+							<div class="modal-header">
+								<button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+								<h5 class="modal-title">Bulk Job: <i> {{selectedUser.name}}</i></h5>
+							</div>
+							<div class="modal-body">
+
+								<bc-table [userLabs]="userLabs"> </bc-table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+    <div id="stack1" class="modal fade" tabindex="-1">
+      <div class="modal-content  stack0 modal-lg">
+        <div *ngIf="selectedUser">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <h5 class="modal-title">Bulk Job: <i> {{selectedUser.name}}</i></h5>
+          </div>
+          <div class="modal-body">
+            <bc-table (onSubmit)="setDeadline($event)" [userLabs]="userLabs"> </bc-table>
+          </div>
+        </div>
+      </div>
+    </div>

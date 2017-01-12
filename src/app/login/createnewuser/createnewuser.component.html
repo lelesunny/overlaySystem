@@ -1,0 +1,66 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+    <!--<bc-nav-menu></bc-nav-menu>-->
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <h3 class="padbottom"><strong>{{title}}</strong></h3>
+    <dotted-border></dotted-border>
+    <div class="col-md-6 col-md-offset-3 jumbotron">
+      <!--{ 'has-error': (f.submitted && !username.valid) || (f.submitted && model.passwd !== passwordb)}-->
+      <form name="form" (ngSubmit)="f.form.valid && ( !model.islocal || model.passwd == passwordb ) && model.tags && !tagError && register()"
+        #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid}">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstname" #firstName="ngModel" required />
+          <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid}">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastname" #lastName="ngModel" required />
+          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          />
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Please enter the email for User Name</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && (tagError || !model.tags)}">
+          <label for="usertag">Select tags for user</label>
+          <ng-select (data)="value" [multiple]="true" [items]="items" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+            placeholder="No tags selected">
+          </ng-select>
+          <a>{{itemsToString(value)}}</a>
+          <div *ngIf="f.submitted && (tagError || !model.tags)" class="help-block">Please sign tags for user</div>
+          <!--<pre [(ngModel)]="model.username">{{itemsToString(value)}}</pre>-->
+        </div>
+        <div class="form-group">
+          <div for="username">User type &nbsp;&nbsp;
+            <input type="checkbox" (click)="model.islocal = !model.islocal; $event.stopPropagation()" />Non-SSO
+            <input class="checkbox" type="checkbox" (click)="model.isadmin = !model.isadmin; $event.stopPropagation()" />Admin
+          </div>
+        </div>
+        <div *ngIf="model.islocal">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="passwd">Password</label>
+            <input type="password" class="form-control" name="passwd" [(ngModel)]="model.passwd" #passwd="ngModel" required />
+            <div *ngIf="f.submitted && !passwd.valid" class="help-block">Password is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Re-enter Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="passwordb" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">re-enter password is required</div>
+            <div *ngIf="f.submitted && model.passwd !== passwordb" class="help-block">password should be the same</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading && !f.form.valid" class="btn btn-outline-warning btn-md">Create</button>
+          <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+          <a routerLink="/admin/users" routerLinkActive="active" class="bc-btn">&nbsp;&nbsp;&nbsp;Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.addbox {
+  padding: 8px;
+  margin: 25px 0px 6px 3px;
+  width: 15%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  white-space: initial;
+  margin-top: 52px;
+}
+
+.addbox::hover {
+  color: black;
+}
+
+.material {
+  clear: both;
+}
+
+.position {
+  margin: auto;
+  margin-top: -600px;
+  background-color: white;
+}
+
+.relative {
+  width: 1026px;
+}
+
+.datatable {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  height: 650px;
+}
+
+.datatable.vertical-scroll {
+  height: 170vh;
+}

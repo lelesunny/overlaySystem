@@ -1,0 +1,69 @@
+.navbar-fixed-left {
+  width: 140px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  width: 100px;
+  /*background-color: #ffca05;*/
+ 
+}
+    
+.padtop{
+  padding: 87px 10px 10px 10px;
+}
+
+.padbottom{
+  padding:40px 10px 10px 10px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 130px;
+}
+
+.active {
+    background-color: #fff06d;
+    width:140px;
+    height:35px;
+    border-radius: 4px;
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 140px;
+    background-color: #ffca05;
+    border-radius: 8px;
+
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    /*background-color: #555;*/
+    color: white;
+}
+
+.logout{
+    color: #ffca05;
+    text-decoration: none;
+    float: right;
+    margin-top: 15px;
+    padding-right: 20px;
+}
+.logout:hover {
+    color:#fff06d;
+}
+.title {
+    color: #ffca05;
+}

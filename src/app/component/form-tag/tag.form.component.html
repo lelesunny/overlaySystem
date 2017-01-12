@@ -1,0 +1,30 @@
+<div class="jumbotron">
+    <form [formGroup]="tagFromV" (ngSubmit)="submitForm(tagFromV.value)">
+        <div class="form-group" [ngClass]="{'has-error':!tagFromV.controls['name'].valid && tagFromV.controls['name'].touched}">
+            <label>Tag Name</label>
+            <input class="form-control" type="text" placeholder="name" [formControl]="tagFromV.controls['name']">
+            <div *ngIf="tagFromV.controls['name'].hasError('required') && tagFromV.controls['name'].touched" class="help-block">Tag name is required.</div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!tagFromV.controls['description'].valid && tagFromV.controls['description'].touched}">
+            <label>Tag Description</label>
+            <input class="form-control" type="text" placeholder="description" [formControl]="tagFromV.controls['description']">
+            <div *ngIf="tagFromV.controls['description'].hasError('required') && tagFromV.controls['description'].touched" class="help-block">Tag description is required.</div>
+        </div>
+        <div class="form-group">
+            <label>Tag Type</label>
+            <div class="help-block" *ngIf="!tagFromV.controls['tagtype'].valid && tagFromV.controls['tagtype'].touched">You must select a tagtype.</div>
+        </div>
+        <div class="checkboxcontext">
+            <input type="radio" name="tagtype" value="L" [formControl]="tagFromV.controls['tagtype']"> lab
+        </div>
+        <div class="checkboxcontext">
+            <input type="radio" name="tagtype" value="U" [formControl]="tagFromV.controls['tagtype']"> User
+        </div>
+        <div class="checkboxcontext">
+            <input type="radio" name="tagtype" value="B" [formControl]="tagFromV.controls['tagtype']"> both
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-warning bc-btn" [disabled]="!tagFromV.valid">Submit</button>
+        </div>
+    </form>
+</div>

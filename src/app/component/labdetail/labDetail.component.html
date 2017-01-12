@@ -1,0 +1,27 @@
+<!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
+<div class="jumbotron">
+    <div *ngIf="selectedUser">
+        <table class="table table-sm">
+            <tr>
+                <th scope="row">User Name</th>
+                <th>{{selectedUser.name}}</th>
+            </tr>
+            <tr>
+                <th>User ID</th>
+                <th>{{selectedUser.userid}}</th>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <th>{{selectedUser.status}}</th>
+            </tr>
+            <tr>
+                <th>Ravelloapp Id</th>
+                <th>{{selectedUser.ravelloappid}}</th>
+            </tr>
+            <tr>
+                <th>Start Time:</th>
+                <th>{{selectedUser.starttime}}</th>
+            </tr>
+        </table>
+    </div>
+</div>

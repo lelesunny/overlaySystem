@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <div *ngIf="selectedUser" class="dialog-body">
+        <div>
+            Application name:<strong>{{selectedUser.name}}</strong>
+        </div>
+        <div *ngIf="selectedUser.nextstop">Next Stop task is set to stop application in:
+            <strong>{{selectedUser.nextstop}}</strong>
+        </div><br>
+
+        <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+
+            <div class="form-group">
+                <label>Extend Options:</label>
+                <ul>
+                    <div *ngFor="let ext of extendOptions">
+                        <input type="radio" name="extendOptions" (click)="getValue(ext)" value="{{ext}}" #extendOptions>                        {{ext.label}}
+                    </div>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" [disabled]="!selected.selectedOption" class="btn btn-warning bc-btn">Submit
+                </button>
+                <i *ngIf="loadingextend" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </form>
+    </div>
+</div>

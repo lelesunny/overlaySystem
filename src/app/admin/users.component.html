@@ -1,0 +1,119 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+    <!--<bc-nav-menu></bc-nav-menu>-->
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <!--<h3 class="padbottom"><strong>{{title}}</strong></h3>-->
+    <dotted-border></dotted-border>
+    <!--search bar-->
+    <div class="row searchbar">
+      <input type='text' class="searchbox" placeholder='Search user name' [ngModel]='val' (ngModelChange)='updateFilter($event)'
+      />
+    </div>
+    <!--History admin-->
+    <div>
+      <!--add user button-->
+      <button class="btn btn-outline-warning btn-sm addbox" routerLink="/admin/user/createnewuser"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>&nbsp;Add New User</button>
+      <!--user list table-->
+      <datatable class='material' [rows]='adminUser' [options]='options' (onPageChange)='onPage($event)'>
+        <datatable-column name="Name" [width]="180">
+          <template let-row="row" let-value="value">
+            <strong class="font15">{{row.username}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Last Login">
+          <template let-row="row" let-value="value">
+            <div class="font15">{{row.lastlogintime|date: 'medium'}}</div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Tags">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <pre class="col-lg-9">{{tagsToString(value)}}</pre>
+              <div class="col-lg-1">
+                <div *ngIf="row.username" class="addbutton" (click)="lgModal.show();add(row)">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <!--<datatable-column name="Save Lab" [width]="30">
+					<template let-row="row" let-value="value">
+						<button *ngIf="row.username" (click)="go()" class="btn btn-outline-warning btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+					</template>
+				</datatable-column>-->
+        <datatable-column name="History" [width]="30">
+          <template let-row="row" let-value="value">
+            <button *ngIf="row.username" class="btn btn-outline-warning btn-sm" (click)="getUserHistory(row);userHistoryModal.show();"><i class="fa fa-history" aria-hidden="true"></i>
+</button>
+          </template>
+        </datatable-column>
+        <datatable-column name="Delete" [width]="30">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-md-3">
+                <button *ngIf="row.username && row.islocal == true" class="btn btn-outline-warning btn-sm" (click)="adminDeleteUser(row);gotoDetail(row)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+</button>
+              </div>
+              <div class="col-md-3">
+                <div *ngIf="deleteLoading && (row.id === rowTemp)">
+                  <i class="col-md-4 fa fa-spinner fa-pulse fa-lg fa-fw snip"></i>
+                  <span class="sr-only">&nbsp;Loading...</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+      </datatable>
+      <!--<div *ngIf="Loading" class="position">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+        <span class="sr-only">Loading...</span>
+      </div>-->
+    </div>
+    <!--modal window-->
+    <div>
+      <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">Select tags</h5>
+            </div>
+            <div class="modal-body">
+              <ng-select (data)="value" [active]="actived" [multiple]="true" [items]="items" (data)="refreshValue($event)" (selected)="selected($event)"
+                (removed)="removed($event)" placeholder="No tags selected">
+              </ng-select>
+              <!--<pre>{{itemsToString(value)}}</pre>-->
+              <button [disabled]="loading" class="btn btn-outline-warning btn-sm btton" (click)="Done(row);lgModal.hide()">Done</button>
+              <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--modal window for user history-->
+    <div>
+      <div bsModal #userHistoryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" style="padding-right: 17px">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content modal-history">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="userHistoryModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              <h5 class="modal-title">User History</h5>
+            </div>
+            <div class="modal-body">
+              <user-history [userHistory]="userHistory" [historyLoading]="historyLoading"></user-history>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

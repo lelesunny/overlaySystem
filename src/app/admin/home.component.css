@@ -1,0 +1,76 @@
+.searchbox {
+  padding: 8px;
+  margin: 9px 15px -10px;
+  width: 35%;
+  border-radius: 5px;
+  float: right;
+  clear: right;
+  margin-bottom: -20px;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffca05 !important;
+  border-color: #ffca05 !important;
+  color: black;
+}
+
+.position {
+  margin: auto;
+  margin-top: -600px;
+  background-color: white;
+  border: 1px solid red;
+}
+
+.relative {
+  width: 1026px;
+}
+
+.datatable {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  height: 550px;
+  margin-top: 66px;
+}
+
+.datatable.vertical-scroll {
+  height: 170vh;
+}
+
+.snip {
+  padding: 0px;
+  margin-left: 22px;
+  margin-top: 5px;
+}
+
+[disabled] {
+  color: #9E9E9E !important;
+  opacity: .5 !important;
+  border-color: #9E9E9E !important;
+}
+
+[disabled]:hover {
+  background-color: #efefef !important;
+  border-color: #9E9E9E !important;
+}
+
+.wb {
+  word-wrap: break-word !important;
+}
+
+.wba {
+  box-shadow: 1px 1px 4px darkgrey;
+  padding: 16px;
+  margin: 3px -9px 3px -9px;
+  padding-top: 28px;
+}
+
+.labInfoLoad {
+  margin: auto;
+  width: 875px;
+}
+
+.scroll {
+  height: 400px;
+  overflow: auto;
+}

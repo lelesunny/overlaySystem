@@ -1,0 +1,116 @@
+<div class="row">
+  <!--<div class="col-md-10 col-lg-10">-->
+  <div class="jumbotron">
+    <form name="form" (ngSubmit)="f.form.valid && go()" #f="ngForm" novalidate>
+      <!--Optimize option-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="firstName">Optimize Options</label>
+            <div *ngFor="let opt of optimizeOptions">
+              <div class="checkboxcontext">
+                <input type="radio" name="optimize" [(ngModel)]="model.optimizationlevel" [value]="opt.value"> {{opt.display}}
+              </div>
+            </div>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="model.optimizationlevel =='P'">
+        <div class="optP">
+          <div class="opto">Location</div>
+          <div class="opts">
+            <ng-select [allowClear]="true" [items]="regions" (data)="regionValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+              (typed)="typed($event)" placeholder="Select The Location" [active]="regionActive">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="model.optimizationlevel =='C'">
+        <div class="optC">
+          <div class="optl">Cloud</div>
+          <div class="optb">Best Fit</div>
+        </div>
+        <div class="optC">
+          <div class="optl">Region</div>
+          <div class="optb">Best Fit</div>
+        </div>
+      </div>
+      <!--timezone template-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="firstName">Select your TimeZone</label>
+            <ng-select [allowClear]="true" [items]="timezones" (data)="timezoneValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+              (typed)="typed($event)" placeholder="Select Time Zone" [active]="timezoneActive">
+            </ng-select>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      
+      <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <label for="username">Schedule date and time</label>
+        <span class="checkbox">
+						<input type="checkbox" (click)="model.isautomaticstart = !model.isautomaticstart; $event.stopPropagation()"
+						/><a class="checkboxcontext">&nbsp;Automatic Start</a>
+					</span>
+        <a *ngIf="date && time && hour && !model.schedule" class="count-oi stooltip">
+          <i></i>
+          <u></u>
+          Please Add it
+        </a>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th class="date">Date</th>
+              <th class="date">Start time</th>
+              <th>Duration</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <td>
+                <input type="date" class="form-control input-group date" name="startdate" [(ngModel)]="date" #username="ngModel">
+              </td>
+              <td>
+                <input type="time" class="form-control" name="starttime date" [(ngModel)]="time" #username="ngModel">
+              </td>
+              <td>
+                <ng-select [allowClear]="true" [items]="hours" (data)="refreshValue($event)" (selected)="selectedHour($event)" (removed)="removed($event)"
+                  (typed)="typed($event)" placeholder="Duration/ hourly " [active]="hoursActive">
+                </ng-select>
+              </td>
+              <td>
+                <div class="addbutton" (click)="addDate(date,time)">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let date of model.schedule">
+              <td>{{date.startdate}}</td>
+              <td>{{date.starttime}}</td>
+              <td>{{date.duration}} H</td>
+              <td> <span (click)="deleteSchedule(date)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--</div>-->
+      <div class="form-group">
+        <button [disabled]="scheduleLoading || (!model.schedule &&  (!model.startdate || !model.noofdays) ) || !value || !model.timezone ||  (model.optimizationlevel == 'P' && !model.region)"
+          class="btn btn-outline-warning btn-md">Go</button>
+        <!--<button class="btn btn-outline-warning btn-md">Go</button>-->
+        <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+        <a routerLink="/admin/home" routerLinkActive="active" class="bc-btn">&nbsp;&nbsp;&nbsp;Cancel</a>
+      </div>
+    </form>
+  </div>
+  <!--</div>-->
+</div>

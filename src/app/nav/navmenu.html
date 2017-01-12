@@ -1,0 +1,42 @@
+<nav class="navbar navbar-light">
+  <!--<ul class="nav navbar-nav navi" style="float:right;background-color:black;padding: 0px 8px 0px 15px;
+    height: 36px;border-radius: 30px;" *ngIf="!isAdmin">
+		
+		<li class="nav-item">
+			<a class="nav-link" routerLink="/help" routerLinkActive="active">Help</a>
+		</li>
+	</ul>-->
+  <ul class="nav navbar-nav navi" style="float:right;padding: 0px 38px 4px 0px;
+   border-radius: 30px;float: right;clear: both;" *ngIf="isAdmin">
+    <li class="nav-item" style="width: 86px">
+      <a class="nav-link" routerLink="/admin/home" routerLinkActive="active"><i class="fa fa-home fa-2x" aria-hidden="true"></i> Home
+      </a>
+    </li>
+    <li class="nav-item" style="width: 86px">
+      <a class="nav-link" routerLink="/admin/users" routerLinkActive="active"><i class="fa fa-users" aria-hidden="true"></i>
+Users</a>
+    </li>
+    <li class="nav-item" style="width: 86px">
+      <a class="nav-link" routerLink="/admin/tags" routerLinkActive="active"><i class="fa fa-tags" aria-hidden="true"></i>
+ Tags </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/templates" routerLinkActive="active"> <i class="fa fa-building-o" aria-hidden="true"></i> Blueprints
+      </a>
+    </li>
+    <!--<li class="nav-item">
+      <a class="nav-link"  routerLink="/admin/bulkcreate" routerLinkActive="active"> Bulk Create</a>
+    </li>-->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/bulkcreatehistory" routerLinkActive="active"><i class="fa fa-cubes" aria-hidden="true"></i>
+ Bulk Jobs</a>
+    </li>
+    <li class="nav-item" style="width: 98px">
+      <a class="nav-link" routerLink="/admin/settings" routerLinkActive="active"><i class="fa fa-cog" aria-hidden="true"></i>
+ Settings</a>
+    </li>
+    <!--<li class="nav-item">
+			<a class="nav-link" routerLink="/admin/reports" routerLinkActive="active"> Reports</a>
+		</li>-->
+  </ul>
+</nav>

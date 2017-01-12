@@ -1,0 +1,27 @@
+<div class="jumbotron">
+    <form [formGroup]="LabFormVali" (ngSubmit)="submitForm(LabFormVali.value)">
+        <div class="form-group" [ngClass]="{'has-error':!LabFormVali.controls['name'].valid && LabFormVali.controls['name'].touched}">
+            <label>Lab Name</label>
+            <input class="form-control" type="text" placeholder="lab name" [formControl]="LabFormVali.controls['name']">
+            <div *ngIf="LabFormVali.controls['name'].hasError('required') && LabFormVali.controls['name'].touched" class="help-block">
+                Lab name is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Template</label>
+            <ng-select [allowClear]="true" [items]="templates" (data)="templateValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+                (typed)="typed($event)" placeholder="Select or search template" [active]="activeData">
+            </ng-select>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-warning bc-btn" [disabled]="!LabFormVali.valid || !value">Submit</button>
+            <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
+    </form>
+</div>

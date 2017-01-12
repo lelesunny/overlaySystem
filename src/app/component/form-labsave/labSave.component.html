@@ -1,0 +1,21 @@
+<!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
+<div class="jumbotron">
+    <div *ngIf="selectedUser" class="dialog-body">
+        <div>
+            Application name:<strong>{{selectedUser.name}}</strong>
+        </div><br>
+
+        <form (ngSubmit)="submitForm(model)">
+            <div class="form-group">
+                <label>Lab name</label>
+
+                <input class="form-control" type="text" placeholder="Custome lab name" [(ngModel)]="labname" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning bc-btn" [disabled]="!labname">Change lab name and save</button>
+
+            </div>
+        </form>
+    </div>
+</div>

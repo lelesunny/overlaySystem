@@ -1,0 +1,195 @@
+<bc-nav-header></bc-nav-header>
+<div class="row">
+  <div class="col-md-1 col-lg-1">
+  </div>
+  <div class="col-md-10 col-lg-10">
+    <dotted-border></dotted-border>
+    <!--search bar-->
+    <div class="row searchbar">
+      <input type='text' class="searchbox" placeholder='Search Blueprint name' [ngModel]='val' (ngModelChange)='updateFilter($event)'
+      />
+    </div>
+    <!--History admin-->
+    <div>
+      <!--add user button-->
+      <button class="btn btn-outline-warning btn-sm addbox" (click)="customeTagModal.show();al.defaultAddNewLab()"><i class="fa fa-flask fa-lg" aria-hidden="true"></i>&nbsp;Add New Lab</button>
+      <!--user list table-->
+      <datatable class='material' [rows]='labList' [options]='options'>
+        <datatable-column name="Name">
+          <template let-row="row" let-value="value">
+            <strong class="font15">{{row.name}}</strong>
+          </template>
+        </datatable-column>
+        <datatable-column name="Blueprint">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <div class="col-lg-6 font15 flow">{{row.blueprintname}}</div>
+              <div class="col-lg-1">
+                <div *ngIf="row.name" class="addbutton" (click)="blueprintNameModal.show();gotoDetail(row);update()">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Tags">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <pre class="col-lg-9">{{tagsToString(value)}}</pre>
+              <div class="col-lg-1">
+                <div *ngIf="row.name" class="addbutton" (click)="ngSelectModal.show();add(row);gotoDetail(row)">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Description" [width]="5">
+          <template let-row="row" let-value="value">
+            <div class="row">
+              <!--<a class="col-md-5 col-lg-5">{{row.instructions}}</a>-->
+              <div class="col-md-1 col-lg-1">
+                <div *ngIf="row.name" class="addbutton" (click)="instructionEditModal.show();gotoDetail(row); ex.openEmailT()">
+                  <i class="fa fa-link" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+        <datatable-column name="Edit Email" [width]="10">
+          <template let-row="row" let-value="value">
+            <div class="row" *ngIf="row.name">
+              <!--<div class="col-lg-3">
+								cur:{{row.emailtemplateId}}
+							</div>-->
+              <div class="col-lg-1">
+                <div class="addbutton" (click)="editEmailModal.show();gotoDetail(row);onEditEmail(row); ee.defaultEmailTemplate()">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </template>
+        </datatable-column>
+      </datatable>
+      <!--<div *ngIf="Loading" class="position">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw relative"></i>
+				<span class="sr-only">Loading...</span>
+			</div>-->
+    </div>
+    <!--modal window-->
+    <div>
+      <div bsModal #ngSelectModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="ngSelectModal.hide()" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        					</button>
+              <h5 class="modal-title">Select tags for:
+                <i class="selectedUser" *ngIf="selectedUser">{{selectedUser.name}}</i></h5>
+            </div>
+            <div class="modal-body">
+              <ng-select (data)="value" [active]="actived" [multiple]="true" [items]="items" (data)="refreshValue($event)" (selected)="selected($event)"
+                (removed)="removed($event)" placeholder="No tags selected">
+              </ng-select>
+              <!--<pre>{{itemsToString(value)}}</pre>-->
+              <button [disabled]="loading" class="btn btn-outline-warning btn-sm btton" (click)="Done(row);ngSelectModal.hide()">Done</button>
+              <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal window-->
+  <div>
+    <div bsModal #blueprintNameModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="selectedUser">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="blueprintNameModal.hide()" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        					</button>
+            <h5 class="modal-title">Edit template for:
+              <i class="selectedUser">{{selectedUser.name}}</i></h5>
+          </div>
+          <div class="modal-body">
+            <label><b>Current Blueprint: </b></label> {{selectedUser.blueprintname}}
+            <div class="or"><label>Change to</label>
+              <ng-select (data)="value" [items]="templates" [active]="blueprintnameOrigin" (data)="refreshValue($event)" (selected)="selected($event)"
+                (removed)="removed($event)" placeholder="No tags selected">
+              </ng-select>
+            </div>
+            <button [disabled]="loading || !updatedTemplate.text" class="btn btn-outline-warning btn-sm btton" (click)="updateTemplate();blueprintNameModal.hide();">Done</button>
+            <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div bsModal #customeTagModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="customeTagModal.hide()" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+            <h5 class="modal-title">Add New Lab</h5>
+          </div>
+          <div class="modal-body">
+            <newLab-form (onSubmit)="onSubmit($event);customeTagModal.hide()" [loading]="loading" [templates]="templates" #al></newLab-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div bsModal #instructionEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="instructionEditModal.hide()" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+            <h5 class="modal-title">Edit Description for:
+              <i class="selectedUser" *ngIf="selectedUser">{{selectedUser.name}}</i>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <template-data [selectedUser]="selectedUser" (onSend)="onSend($event);instructionEditModal.hide()" #ex></template-data>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--email edit-->
+  <div>
+    <div bsModal #editEmailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="editEmailModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <h5 class="modal-title">Edit Email for:
+              <i class="selectedUser" *ngIf="selectedUser">{{selectedUser.name}}</i>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <option-open (onSubmit)="onEdit($event);editEmailModal.hide()" [optimizeOptions]="optimizeOptions" [dropdownData]="emailTemplate"
+              [title]="'Select Template'" [emailList]="emailList" [dropdownTitle]="'Email Template'" [emailOriginal]="emailOriginal"
+              #ee>
+            </option-open>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
