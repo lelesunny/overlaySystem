@@ -9,7 +9,7 @@ import { UserInfoService } from '../_services/index';
     styleUrls: ['./help.component.css']
 })
 export class HelpComponent {
-    private userTags: any = [];
+    private userTags: any = [{"id":123,"name":"Custom for associating with demos  ","userid":2,"tagid":15,"username":"user","created":0},{"id":84,"name":"1 running application","userid":2,"tagid":9,"username":"user","created":0},{"id":63,"name":"Beta","userid":2,"tagid":7,"username":"user","created":0},{"id":138,"name":"CN TEST","userid":2,"tagid":157,"username":"user","created":0},{"id":81,"name":"1 saved lab","userid":2,"tagid":144,"username":"user","created":0},{"id":133,"name":"Can extend 4 hour","userid":2,"tagid":143,"username":"user","created":0}];
     private model : any = {};
     ngOnInit() {
         this.getUserTag();
@@ -31,8 +31,8 @@ export class HelpComponent {
             }
         )
     }
-    private emailTo: any;
-    private linkSupport: string;
+    private emailTo: any="sian.chen@example.com";
+    private linkSupport: string="https://www.google.com";
     public getSupportEmail() {
         let action = 'toaddr'
         this.userInfoService.getSupport(action).subscribe(

@@ -11,18 +11,19 @@ import { TableOptions, SelectionType, TableColumn, ColumnMode, SortDirection } f
 })
 export class HomeComponent implements OnInit {
     private selectedUser: any;
-    private labUsers: any = [{ id: "", name: "" }];
+    // private labUsers: any = [{ id: "", name: "" }];
     private temp: any = [];
     // private Loading: boolean;
     // private Load: boolean = true;
     private loading: boolean;
     private loadingextend: boolean;
-    private rows: any = [{ name: '' }];
+    private rows: any = [{"id":86,"name":"12/2 demo 2 template ","instructions":"demo 1 blueprint example instruction","blueprintid":76021913,"created":0,"tags":[]},{"id":93,"name":"New CN","instructions":"Test Instructions","blueprintid":76021913,"created":0,"tags":[]},{"id":83,"name":"Nebula Test Application","emailtemplateId":30,"instructions":"**Test Instructions for display 1**\n**Second Line**","blueprintid":76021913,"created":0,"tags":[]},{"id":89,"name":"Bluecoat Full Lab - Unconfigured - SG,CAS,MC,Rep","emailtemplateId":23,"instructions":"Test Instructions","blueprintid":76745498,"created":0,"tags":[]}];    
+    private labUsers: any = [{"id":86,"name":"Example demo 2 template ","instructions":"demo 1 blueprint example instruction","blueprintid":76021913,"created":0,"tags":[]},{"id":93,"name":"New CN","instructions":"Test Instructions","blueprintid":76021913,"created":0,"tags":[]},{"id":83,"name":"Nebula Test Application","emailtemplateId":30,"instructions":"**Test Instructions for display 1**\n**Second Line**","blueprintid":76021913,"created":0,"tags":[]},{"id":89,"name":"Bluecoat Full Lab - Unconfigured - SG,CAS,MC,Rep","emailtemplateId":23,"instructions":"Test Instructions","blueprintid":76745498,"created":0,"tags":[]}];
     private rowTemp: any;
     private error: any;
     val: string = '';
-    private extendOptions: any = [];
-    private regions: any = [];
+    private extendOptions: any = [{"label":"2 hr","value":7200},{"label":"4 hr","value":14400},{"label":"Never","value":99999}];
+    private regions: any = ["US Central 1","US East 1","US West 1","US West 2","Europe West 2","Singapore","Sydney","Taiwan"];
     private er: any = {};
     private pauseLoading: boolean;
     private deleteLoading: boolean;
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
         footerHeight: 0,
         rowHeight: 42,
         scrollbarV: true,
-        loadingIndicator: true
+        // loadingIndicator: true
 
         // scrollbarH: true
     });
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
         footerHeight: 0,
         rowHeight: 45,
         scrollbarV: true,
-        loadingIndicator: true
+        // loadingIndicator: true
 
         // scrollbarH: true
     });
@@ -310,6 +311,7 @@ export class HomeComponent implements OnInit {
     private timezones: any = [];
 
     public getTimeZone() {
+        this.timezones = ["Africa/Abidjan","Africa/Accra","Africa/Addis_Ababa","Africa/Algiers","Africa/Asmara","Africa/Asmera","Africa/Bamako","Africa/Bangui","Africa/Banjul","Africa/Bissau","Africa/Blantyre","Africa/Brazzaville","Africa/Bujumbura","Africa/Cairo","Africa/Casablanca","Africa/Ceuta","Africa/Conakry","Africa/Dakar","Africa/Dar_es_Salaam","Africa/Djibouti","Africa/Douala","Africa/El_Aaiun","Africa/Freetown","Africa/Gaborone","Africa/Harare","Africa/Johannesburg","Africa/Juba","Africa/Kampala","Africa/Khartoum","Africa/Kigali","Africa/Kinshasa","Africa/Lagos","Africa/Libreville"]
         this.userService.getUserTimeZone().subscribe(
             e => {
                 this.timezones = e;
